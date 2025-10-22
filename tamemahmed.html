@@ -1,7 +1,331 @@
-<html>
-  <head>
-  </head>
-  <body>
-    <i>tamem&ahmed</i>
-  </body>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المتحف المصري</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #ffffff 0%, #f5e6d3 50%, #d4a574 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 100%);
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            color: #2c1810;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .artifact-card {
+            background: linear-gradient(135deg, #00e5cc 0%, #00b8a9 100%);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .artifact-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .artifact-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .artifact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .artifact-label {
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .artifact-label h3 {
+            color: #2c1810;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .scroll-indicator {
+            text-align: center;
+            padding: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator p {
+            font-size: 1.5em;
+            color: #2c1810;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .arrow {
+            font-size: 3em;
+            color: #00b8a9;
+            animation: arrowBounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes arrowBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(15px);
+            }
+        }
+
+        .loading-text {
+            color: #666;
+            font-size: 1.2em;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.1) 100%);
+            margin-top: 60px;
+        }
+
+        .footer p {
+            color: #2c1810;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>أهلا بكم في المتحف المصري</h1>
+    </div>
+
+    <div class="container">
+        <div class="gallery" id="gallery">
+            <!-- Row 1 -->
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=800&q=80" alt="قناع توت عنخ آمون" onerror="this.src='https://via.placeholder.com/400x400/DAA520/FFFFFF?text=قناع+توت+عنخ+آمون'">
+                </div>
+                <div class="artifact-label">
+                    <h3>قناع توت عنخ آمون الذهبي</h3>
+                </div>
+            </div>
+
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1553531384-cc64ac80f931?w=800&q=80" alt="تمثال نفرتيتي" onerror="this.src='https://via.placeholder.com/400x400/D2691E/FFFFFF?text=نفرتيتي'">
+                </div>
+                <div class="artifact-label">
+                    <h3>تمثال نصفي للملكة نفرتيتي</h3>
+                </div>
+            </div>
+
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1582192730841-000751a87cc1?w=800&q=80" alt="تمثال الكاتب الجالس" onerror="this.src='https://via.placeholder.com/400x400/CD853F/FFFFFF?text=الكاتب+الجالس'">
+                </div>
+                <div class="artifact-label">
+                    <h3>تمثال الكاتب المصري</h3>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1539768942893-daf53e448371?w=800&q=80" alt="أهرامات الجيزة" onerror="this.src='https://via.placeholder.com/400x400/DEB887/FFFFFF?text=أهرامات+الجيزة'">
+                </div>
+                <div class="artifact-label">
+                    <h3>أهرامات الجيزة الثلاثة</h3>
+                </div>
+            </div>
+
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?w=800&q=80" alt="حجر رشيد" onerror="this.src='https://via.placeholder.com/400x400/8B7355/FFFFFF?text=حجر+رشيد'">
+                </div>
+                <div class="artifact-label">
+                    <h3>حجر رشيد الشهير</h3>
+                </div>
+            </div>
+
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=800&q=80" alt="تمثالاممنون" onerror="this.src='https://via.placeholder.com/400x400/BC8F8F/FFFFFF?text=تمثالا+ممنون'">
+                </div>
+                <div class="artifact-label">
+                    <h3>تمثالا ممنون العملاقان</h3>
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1572252009286-268acec5ca0a?w=800&q=80" alt="أبو الهول" onerror="this.src='https://via.placeholder.com/400x400/D2B48C/FFFFFF?text=أبو+الهول'">
+                </div>
+                <div class="artifact-label">
+                    <h3>تمثال أبو الهول</h3>
+                </div>
+            </div>
+
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1587139223871-46a1059e1e3d?w=800&q=80" alt="الأواني الكانوبية" onerror="this.src='https://via.placeholder.com/400x400/DAA520/FFFFFF?text=أواني+كانوبية'">
+                </div>
+                <div class="artifact-label">
+                    <h3>الأواني الكانوبية الفرعونية</h3>
+                </div>
+            </div>
+
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1591825338989-7c8d7c4e0fec?w=800&q=80" alt="عرش توت عنخ آمون" onerror="this.src='https://via.placeholder.com/400x400/B8860B/FFFFFF?text=عرش+توت+عنخ+آمون'">
+                </div>
+                <div class="artifact-label">
+                    <h3>عرش توت عنخ آمون المذهب</h3>
+                </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1548777123-e216912df7d8?w=800&q=80" alt="لوحة نارمر" onerror="this.src='https://via.placeholder.com/400x400/8B4513/FFFFFF?text=لوحة+نارمر'">
+                </div>
+                <div class="artifact-label">
+                    <h3>لوحة نارمر التاريخية</h3>
+                </div>
+            </div>
+
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1591058739635-175a0c4ffa96?w=800&q=80" alt="تمثال رمسيس الثاني" onerror="this.src='https://via.placeholder.com/400x400/CD853F/FFFFFF?text=رمسيس+الثاني'">
+                </div>
+                <div class="artifact-label">
+                    <h3>تمثال رمسيس الثاني العظيم</h3>
+                </div>
+            </div>
+
+            <div class="artifact-card">
+                <div class="artifact-image">
+                    <img src="https://images.unsplash.com/photo-1584704162013-2e37f17ff086?w=800&q=80" alt="مومياء فرعونية" onerror="this.src='https://via.placeholder.com/400x400/A0522D/FFFFFF?text=مومياء+فرعونية'">
+                </div>
+                <div class="artifact-label">
+                    <h3>مومياء محفوظة من العصر الفرعوني</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <p>المزيد من الكنوز بالأسفل</p>
+            <div class="arrow">⬇</div>
+        </div>
+
+        <div class="footer">
+            <p>المتحف المصري - حضارة عريقة تمتد لآلاف السنين</p>
+            <p style="margin-top: 10px; color: #666;">استكشف تاريخ مصر العظيم</p>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scroll behavior
+        document.querySelectorAll('.artifact-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Fade in animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(50px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.artifact-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
 </html>
